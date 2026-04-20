@@ -1,4 +1,4 @@
-# Memex Claude Code plugin
+# Memex Plugin for Claude
 
 This is the Claude plugin for [Memex.Garden](https://memex.garden), a bookmarking second brain for humans and agents.
 
