@@ -1,4 +1,4 @@
-import { cp, mkdir, rm } from 'node:fs/promises'
+import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -55,6 +55,19 @@ async function syncPublicFiles() {
         await mkdir(path.dirname(destinationPath), { recursive: true })
         await cp(sourcePath, destinationPath, { recursive: true })
     }
+
+    const releaseConfig = JSON.parse(
+        await readFile(
+            path.join(monorepoRoot, 'config', 'release-version.json'),
+            'utf8',
+        ),
+    )
+    const packageJsonPath = path.join(repoRoot, 'package.json')
+    const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf8'))
+
+    packageJson.version = releaseConfig.claudePlugin.version
+
+    await writeFile(packageJsonPath, `${JSON.stringify(packageJson, null, 4)}\n`)
 
     console.log(`Synced Claude plugin files from ${monorepoRoot}`)
 }

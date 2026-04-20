@@ -39,12 +39,19 @@ async function validate() {
             'utf8',
         ),
     )
+    const packageJson = JSON.parse(
+        await readFile(path.join(repoRoot, 'package.json'), 'utf8'),
+    )
     assertSemver(pluginManifest.version)
 
     if (pluginManifest.repository !== EXPECTED_REPOSITORY_URL) {
         throw new Error(
             `Plugin repository must be ${EXPECTED_REPOSITORY_URL}, received ${pluginManifest.repository}`,
         )
+    }
+
+    if (packageJson.version !== pluginManifest.version) {
+        throw new Error('package.json version must match .claude-plugin/plugin.json.')
     }
 
     console.log('Claude plugin release repo validation passed.')
