@@ -15,20 +15,10 @@ You can save, transcribe, summarize and search anything you come across. Website
 7. Optionally adjust tool permissions
 8. You're done. You can now chat with Memex in your conversations.
 
-## How it works
+## Example prompts
 
-This plugin connects Claude Code to the hosted Memex MCP server at `https://api.memex.garden/mcp`.
-
-It includes:
-
-- hosted Memex MCP access
-- `search_content`
-- `save_content_by_url`
-- the bundled `memex-agent-skill`
-- a `UserPromptSubmit` hook that indexes every URL from the user's prompt before Claude continues
-
-- You can instruct your agent to save any URL and it will be indexed, videos transcribed, images analyzed, and stored in Memex for powerful full-text and vector search.
-- You can query saved content and get back structured data, ready for your agent to process.
+1. `Search my Memex library for pages about MCP authentication and summarize the top results.`
+2. `Save https://docs.memex.garden/general/authentication into Memex, then confirm whether it was new or already indexed.`
 
 ## Authentication
 
@@ -67,11 +57,6 @@ Canonical auth docs:
 - [Authentication](https://docs.memex.garden/general/authentication)
 
 If you are using Claude's custom connector UI instead of the local Claude Code plugin flow, do not install this repo. Use the literal connector URL `https://api.memex.garden/mcp` and complete the OAuth flow there.
-
-## Example prompts
-
-1. `Search my Memex library for pages about MCP authentication and summarize the top results.`
-2. `Save https://docs.memex.garden/general/authentication into Memex, then confirm whether it was new or already indexed.`
 
 ## Reviewer notes
 
