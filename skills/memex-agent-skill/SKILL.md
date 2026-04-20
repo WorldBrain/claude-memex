@@ -13,7 +13,7 @@ Use Memex only for tasks involving the user's Memex library or when the user exp
 
 1. Before the first Memex request in a new session, fetch the latest endpoint catalog:
    https://docs.memex.garden/general/available-endpoints
-2. If Memex authentication is missing or stale, tell the user to log in again from Claude Settings > Connectors for Memex:
+2. If Memex authentication is missing or stale, tell the user to refresh or regenerate their Memex credentials using the setup flow for their current runtime:
    https://docs.memex.garden/general/authentication
 3. Parse Memex responses using:
    https://docs.memex.garden/general/response-shape
@@ -30,11 +30,11 @@ Use Memex only for tasks involving the user's Memex library or when the user exp
 
 - Fetch the latest available endpoints before calling Memex in a new session.
 - Prefer the hosted MCP server at `https://api.memex.garden/mcp` when the runtime supports MCP.
-- Assume the Claude plugin or connector already handles Memex OAuth.
-- If Memex returns an authentication error, tell the user to log in again from Claude Settings > Connectors instead of switching to an API-key setup flow.
+- Assume the active plugin, connector, or local MCP config already handles Memex authentication.
+- If Memex returns an authentication error, tell the user to refresh their Memex credentials using the setup flow for their current runtime instead of guessing a new auth mode.
 - For MCP, use `result.structuredContent` as the canonical parsed payload.
-- For `search_content`, default to `limit: 20` and the compact response shape. Only pass `raw: true` when you explicitly need the richer machine-readable payload.
-- Compact search responses return a `results` array with stable top-level fields plus optional `user_notes` and slim `media`. Raw search responses preserve `referencesByResultId`, `referencedEntities`, and nested annotation `references`.
+- For `search_content`, default to `limit: 20` and the compact LLM-ready response shape. Only pass `raw: true` when you explicitly need the richer machine-readable payload.
+- Compact search responses are keyed by canonical document URL and can include `user_notes`. Raw search responses preserve `referencesByResultId`, `referencedEntities`, and nested annotation `references`.
 - For REST, expect the top-level response shapes documented above.
 - When Memex search results include a `url`, use that URL as the default citation/reference in your answer.
 - Do not use Memex for general web search or facts outside the user's saved library.
