@@ -4,7 +4,7 @@ This is the Claude plugin for [Memex.Garden](https://memex.garden), a bookmarkin
 
 You can save, transcribe, summarize and search anything you come across. Websites, notes, web highlights, YouTube, X, TikTok, Instagram, PDFs, Reddit or images. Here is our [Privacy Policy](https://memex.garden/privacy).
 
-## Install from this repo
+## How to install
 
 1. Download plugin: [Download](https://github.com/WorldBrain/claude-memex/raw/main/memex-garden-claude-plugin.zip)
 2. Go to Claude's `Customize` tab
